@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom";
 
-import Windbnb from './Windbnb'
+import Windbnb from './component/Windbnb'
 
 class Main extends React.Component {
     render() {
