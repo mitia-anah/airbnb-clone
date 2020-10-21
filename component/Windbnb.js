@@ -1,37 +1,48 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import WindbnbCard from './WindbnbCard'
+import SearchForm from './SearchForm'
 import stays from '../stays.json'
 
 function Windbnb() {
+    let staysData = stays;
     const [airbnb, setAirbnb] = useState([])
+    const [filterCity, setFilterCity] = useState("")
+    const [filterGuest, setFilterGuest] = useState("")
 
-    function getWindbnb() {
-        const data = { stays };
-        setAirbnb(data.results)
+    const handleCities = (e) => {
+        e.preventDefault();
+        setFilterCity(e.target.value);
+        const filteredCities = setAirbnb(staysData.filter(city => {
+            return city.city.toLowerCase() === e.target.value.toLowerCase();
+        }))
+        return filteredCities
     }
-
-    useEffect(() => {
-        getWindbnb();
-    }, [])
+    const handleNumberOfGuest = (e) => {
+        e.preventDefault();
+        setFilterGuest(e.target.value);
+        const filteredGuest = setAirbnb(staysData.filter(guest => {
+            return guest.maxGuests.toString() === e.target.value.toString();
+        }))
+        return filteredGuest
+    }
 
     return (
         <>
             <div className='card--list'>
                 <h1><a href="windbnb">Windbnb</a></h1>
                 <h2>Stays in finland</h2>
+                <SearchForm handleCities={handleCities} handleNumberOfGuest={handleNumberOfGuest} />
 
-                <form className="form" onSubmit={getWindbnb}>
-                    <label className='label' htmlFor="query">Helsinki,Finland</label>
-                    <input className="input" name='search' type='text' placeholder="Add guests"
-                        value={airbnb} onChange={(e) => setAirbnb(e.target.value)}
-                    />
-                    <button type="submit" className="button"></button>
-                </form>
                 <div className="airbnb-list">
-                    {stays.map(airbnb =>
-                        <WindbnbCard airbnb={airbnb} key={airbnb.id} />
-                    )}
+                    {filterCity || filterGuest
+                        ? airbnb.map(airbnb => <WindbnbCard airbnb={airbnb} key={airbnb.id} />)
+                        : stays.map(airbnb =>
+                            <WindbnbCard airbnb={airbnb} key={airbnb.id} />
+                        )}
                 </div>
+                <footer>
+                    <p>Your name @ DevChallenges.io</p>
+                </footer>
             </div>
         </>
     )

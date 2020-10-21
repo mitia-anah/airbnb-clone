@@ -73,6 +73,12 @@ h1 > a {
     background-size: 80%;
 }
 
+footer {
+    border-top: 2px solid lightgray;
+    margin: 10rem 20rem 0;
+    text-align: center;
+}
+
 @media (min-width: 800px) {
     .airbnb-list {
         display: flex;
