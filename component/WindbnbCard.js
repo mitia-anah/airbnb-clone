@@ -8,9 +8,8 @@ function Windbnb({ airbnb }) {
                 src={airbnb.photo}
                 alt={airbnb.title} />
             <div className="card-properties">
-                <p>SUPERHOST{airbnb.superHost}</p>
-                <p className='type'>{airbnb.type}</p>
-                <p className='beds'>{airbnb.beds}beds</p>
+                <p className="superHost">{airbnb.superHost ? true : 'superHost'}</p>
+                <p>{airbnb.type} {airbnb.beds ? `${airbnb.beds}beds` : ""}</p>
                 <p className='rating'>{airbnb.rating}</p>
             </div>
         </div>

@@ -1,11 +1,11 @@
 import React from 'react'
-// import Windbnb from './Windbnb'
 
 function SearchForm(props) {
-    // const handleCities = props.handleCities ? 'handleCities' : '';
+    const { show, openModal, handleCities, handleNumberOfGuest } = props;
+
     return (
-        <form className="form" >
-            <select className="City" onChange={props.handleCities}>
+        <form className="form">
+            <select className="City" onChange={handleCities}>
                 <option value="Helsinki">Helsinki</option>
                 <option value="Turku">Turku</option>
                 <option value="Vaasa">Vaasa</option>
@@ -17,9 +17,10 @@ function SearchForm(props) {
                 <option value="Toliara">Toaliara</option>
                 <option value="Antsiranana">Antsiranana</option>
             </select>
-            <input className="input" name='search' type='number' placeholder="Add guests" onChange={props.handleNumberOfGuest}
+            <input className="input" name='search' type='number' placeholder="Add guests" onChange={handleNumberOfGuest}
             />
-            <button type="submit" className="button"></button>
+            {!show && <button onClick={openModal}>Show modal</button>}
+
         </form>
     )
 }

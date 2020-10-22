@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
-import WindbnbCard from './WindbnbCard'
-import SearchForm from './SearchForm'
+import WindbnbCard from '../component/WindbnbCard'
+import SearchForm from '../component/SearchForm'
 import stays from '../stays.json'
+import "modal.css"
+import Modal from '../component/Modal'
 
 function Windbnb() {
     let staysData = stays;
     const [airbnb, setAirbnb] = useState([])
     const [filterCity, setFilterCity] = useState("")
     const [filterGuest, setFilterGuest] = useState("")
+    const [show, setShow] = useState(false);
+    const openModal = () => setShow(true);
+    const closeModal = () => setShow(false);
+
 
     const handleCities = (e) => {
         e.preventDefault();
@@ -31,13 +37,18 @@ function Windbnb() {
             <div className='card--list'>
                 <h1><a href="windbnb">Windbnb</a></h1>
                 <h2>Stays in finland</h2>
-                <SearchForm handleCities={handleCities} handleNumberOfGuest={handleNumberOfGuest} />
+                <SearchForm
+                    openModal={openModal}
+                    handleCities={handleCities}
+                    handleNumberOfGuest={handleNumberOfGuest}
+                />
+                <Modal closeModal={closeModal} show={show} />
 
                 <div className="airbnb-list">
                     {filterCity || filterGuest
                         ? airbnb.map(airbnb => <WindbnbCard airbnb={airbnb} key={airbnb.id} />)
                         : stays.map(airbnb =>
-                            <WindbnbCard airbnb={airbnb} key={airbnb.id} />
+                            <WindbnbCard airbnb={airbnb} key={airbnb.id} paragraph="superHost" />
                         )}
                 </div>
                 <footer>

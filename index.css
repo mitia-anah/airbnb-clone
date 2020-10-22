@@ -62,7 +62,15 @@ h1 > a {
     top: 90%;
     position: absolute;
 }
+.superHost {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 15px;
+    text-transform: uppercase;
 
+    color: #4F4F4F;
+}
 .rating::before {
     content: ' ';
     background-image: url(./images/star.svg);
@@ -70,7 +78,13 @@ h1 > a {
     background-position: 10%;
     padding: 1rem;
     display: block;
-    background-size: 80%;
+}
+
+.card-properties {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
 }
 
 footer {
@@ -96,12 +110,7 @@ footer {
     .airbnb--content > h3 {
        
     }
-    .card-properties {
-        display: flex;
-        flex-direction: row;
-        /* justify-content: space-between; */
-        flex-wrap: wrap;
-    }
+    
     p {
     padding-inline-end:  1rem;
     }

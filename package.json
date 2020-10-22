@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/mitia-anah/airbnb-clone#readme",
   "dependencies": {
+    "modal.css": "^0.2.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   }
